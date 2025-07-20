@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Flights", "Flights", "{62551E40-F74B-4E6A-8DEE-4E6D24B0AF24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Invoices", "Invoices", "{30EBD3CD-BF6B-4324-8E98-20307908EBC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{F84F1FCD-69D7-47F0-BCFB-A6DD6B230542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Flights.API", "AirlineBookingSystem.Flights.API\AirlineBookingSystem.Flights.API.csproj", "{B1D21087-9535-45F7-A78A-F2A8CF58054C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Flights.Core", "AirlineBookingSystem.Flights.Core\AirlineBookingSystem.Flights.Core.csproj", "{FC787428-4CFB-49D3-877B-54696CE64F64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Flights.Infrastructure", "AirlineBookingSystem.Flights.Infrastructure\AirlineBookingSystem.Flights.Infrastructure.csproj", "{C359A056-118D-487D-880C-72D8946AE1C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Flights.Application", "AirlineBookingSystem.Flights.Application\AirlineBookingSystem.Flights.Application.csproj", "{343133D2-1239-4F28-A6A1-327D00079CAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Users.API", "AirlineBookingSystem.Users.API\AirlineBookingSystem.Users.API.csproj", "{3613D595-3F5E-4697-814F-C805E3C8BD7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1D21087-9535-45F7-A78A-F2A8CF58054C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D21087-9535-45F7-A78A-F2A8CF58054C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D21087-9535-45F7-A78A-F2A8CF58054C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D21087-9535-45F7-A78A-F2A8CF58054C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC787428-4CFB-49D3-877B-54696CE64F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC787428-4CFB-49D3-877B-54696CE64F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC787428-4CFB-49D3-877B-54696CE64F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC787428-4CFB-49D3-877B-54696CE64F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C359A056-118D-487D-880C-72D8946AE1C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C359A056-118D-487D-880C-72D8946AE1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C359A056-118D-487D-880C-72D8946AE1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C359A056-118D-487D-880C-72D8946AE1C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{343133D2-1239-4F28-A6A1-327D00079CAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{343133D2-1239-4F28-A6A1-327D00079CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{343133D2-1239-4F28-A6A1-327D00079CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{343133D2-1239-4F28-A6A1-327D00079CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3613D595-3F5E-4697-814F-C805E3C8BD7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3613D595-3F5E-4697-814F-C805E3C8BD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3613D595-3F5E-4697-814F-C805E3C8BD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3613D595-3F5E-4697-814F-C805E3C8BD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1D21087-9535-45F7-A78A-F2A8CF58054C} = {62551E40-F74B-4E6A-8DEE-4E6D24B0AF24}
+		{FC787428-4CFB-49D3-877B-54696CE64F64} = {62551E40-F74B-4E6A-8DEE-4E6D24B0AF24}
+		{C359A056-118D-487D-880C-72D8946AE1C6} = {62551E40-F74B-4E6A-8DEE-4E6D24B0AF24}
+		{343133D2-1239-4F28-A6A1-327D00079CAB} = {62551E40-F74B-4E6A-8DEE-4E6D24B0AF24}
+		{3613D595-3F5E-4697-814F-C805E3C8BD7D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD9C51C5-6505-4FCA-A4CB-9FB037BE56FE}
+	EndGlobalSection
+EndGlobal
