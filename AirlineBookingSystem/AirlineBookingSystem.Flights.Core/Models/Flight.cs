@@ -12,6 +12,8 @@ namespace AirlineBookingSystem.Flights.Core.Models
         public string ArrivalAirportCode { get; set; }
         public string? AircraftType { get; set; }
 
+        public List<Booking>? Bookings { get; set; }
+
         [ConcurrencyCheck]
         public Guid Version { get; set; }
     }
