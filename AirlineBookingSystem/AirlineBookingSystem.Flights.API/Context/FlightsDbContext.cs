@@ -1,6 +1,6 @@
-﻿using AirlineBookingSystem.Flights.API.Database.Configurations;
-using AirlineBookingSystem.Flights.Core.Models;
+﻿using AirlineBookingSystem.Flights.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace AirlineBookingSystem.Flights.API.Context
 {
@@ -14,8 +14,7 @@ namespace AirlineBookingSystem.Flights.API.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new FlightConfigurations());
-            modelBuilder.ApplyConfiguration(new BookingConfigurations());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
