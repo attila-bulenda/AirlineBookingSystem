@@ -1,10 +1,9 @@
 using AirlineBookingSystem.Flights.Application.Configurations;
-using AirlineBookingSystem.Flights.Application.Handlers.Flights;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,17 +28,23 @@ builder.Services.AddDbContext<FlightsDbContext>(options =>
     }
 });
 
-// Dependency injections
-builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
+// Adding AutoMapper
+var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<AutoMapperConfiguration>();
+}, loggerFactory);
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+// Adding dependency injections
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IFlightsRepository, FlightsRepository>();
 builder.Services.AddScoped<IBookingsRepository, BookingsRepository>();
 
-// MediatR handlers
+// Adding MediatR handlers
 var handlers = HandlerAssemblies.GetMediatRHandlers();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(handlers));
-
-
 
 var app = builder.Build();
 

@@ -4,5 +4,6 @@ namespace AirlineBookingSystem.Flights.Core.Interfaces
 {
     public interface IFlightsRepository: IGenericRepository<Flight>
     {
+        Task<IEnumerable<Flight>> GetAllWithBookingsAsync();
     }
 }

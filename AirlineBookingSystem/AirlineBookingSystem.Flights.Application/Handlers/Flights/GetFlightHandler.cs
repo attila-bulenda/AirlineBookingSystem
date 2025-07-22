@@ -18,7 +18,7 @@ namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
         public async Task<FlightDto> Handle(GetFlightQuery request, CancellationToken cancellationToken)
         {
             var flight = await _repoistory.GetAsync(request.id);
-            return _mapper.Map<FlightDto>(flight);
+            return flight is null ? null : _mapper.Map<FlightDto>(flight);
         }
     }
 }

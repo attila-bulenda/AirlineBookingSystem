@@ -3,19 +3,16 @@ using System;
 using AirlineBookingSystem.Flights.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AirlineBookingSystem.Flights.API.Migrations
+namespace AirlineBookingSystem.Flights.Infrastructure.Migrations
 {
     [DbContext(typeof(FlightsDbContext))]
-    [Migration("20250721123205_SeedingBookingsData")]
-    partial class SeedingBookingsData
+    partial class FlightsDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.7");

@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Core.Models;
+using MediatR;
+using AirlineBookingSystem.Flights.Application.Queries.Flights;
+using AirlineBookingSystem.Flights.Core.DTOs;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
@@ -10,31 +13,36 @@ namespace AirlineBookingSystem.Flights.API.Controllers
     public class FlightsController : ControllerBase
     {
         private readonly FlightsDbContext _context;
+        private readonly IMediator _mediator;
 
-        public FlightsController(FlightsDbContext context)
+        public FlightsController(FlightsDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         // GET: api/Flights
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Flight>>> GetFlights()
+        public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlights()
         {
-            return await _context.Flights.ToListAsync();
+            var flights = await _mediator.Send(new GetAllFlightsQuery());
+            return flights is null ? NotFound() : Ok(flights);
+        }
+
+        // GET: api/Flights/Detailed
+        [HttpGet("detailed")]
+        public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlightsDetailed()
+        {
+            var flights = await _mediator.Send(new GetAllFlightsWithBookingsQuery());
+            return flights is null ? NotFound() : Ok(flights);
         }
 
         // GET: api/Flights/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Flight>> GetFlight(int id)
+        public async Task<ActionResult<FlightDto>> GetFlight(int id)
         {
-            var flight = await _context.Flights.FindAsync(id);
-
-            if (flight == null)
-            {
-                return NotFound();
-            }
-
-            return flight;
+            var flight = await _mediator.Send(new GetFlightQuery(id));
+            return flight is null ? NotFound() : Ok(flight);
         }
 
         // PUT: api/Flights/5
