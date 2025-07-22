@@ -5,6 +5,7 @@ using AirlineBookingSystem.Flights.Core.Models;
 using MediatR;
 using AirlineBookingSystem.Flights.Application.Queries.Flights;
 using AirlineBookingSystem.Flights.Core.DTOs;
+using AirlineBookingSystem.Flights.Application.Commands.Flights;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
@@ -79,12 +80,10 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Flight>> PostFlight(Flight flight)
+        public async Task<ActionResult<Flight>> PostFlight(FlightDto flight)
         {
-            _context.Flights.Add(flight);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetFlight", new { id = flight.Id }, flight);
+            var flightId = await _mediator.Send(new CreateFlightCommand(flight));
+            return CreatedAtAction("GetFlight", new { id = flightId }, flight);
         }
 
         // DELETE: api/Flights/5
