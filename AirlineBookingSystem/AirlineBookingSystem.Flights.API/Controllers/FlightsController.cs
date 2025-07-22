@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AirlineBookingSystem.Flights.API.Context;
+using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Core.Models;
 
 namespace AirlineBookingSystem.Flights.API.Controllers

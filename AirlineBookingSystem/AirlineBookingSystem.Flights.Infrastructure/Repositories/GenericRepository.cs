@@ -1,11 +1,6 @@
-﻿using AirlineBookingSystem.Flights.API.Context;
+﻿using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineBookingSystem.Flights.Infrastructure.Repositories
 {

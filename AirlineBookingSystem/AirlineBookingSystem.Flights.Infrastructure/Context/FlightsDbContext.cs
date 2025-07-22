@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace AirlineBookingSystem.Flights.API.Context
+namespace AirlineBookingSystem.Flights.Infrastructure.Context
 {
     public class FlightsDbContext: DbContext
     {

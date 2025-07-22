@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AirlineBookingSystem.Flights.API.Database.Configurations
+namespace AirlineBookingSystem.Flights.Infrastructure.Database.Configurations
 {
     internal class FlightConfigurations: IEntityTypeConfiguration<Flight>
     {

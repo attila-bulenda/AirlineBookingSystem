@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AirlineBookingSystem.Flights.API\AirlineBookingSystem.Flights.API.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AirlineBookingSystem.Flights.Core\AirlineBookingSystem.Flights.Core.csproj" />
   </ItemGroup>
 
