@@ -8,16 +8,16 @@ namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
 {
     public class GetFlightHandler : IRequestHandler<GetFlightQuery, FlightDto>
     {
-        IFlightsRepository _repoistory;
+        IFlightsRepository _repository;
         IMapper _mapper;
         public GetFlightHandler(IFlightsRepository repository, IMapper mapper)
         {
-            _repoistory = repository;
+            _repository = repository;
             _mapper = mapper;
         }
         public async Task<FlightDto> Handle(GetFlightQuery request, CancellationToken cancellationToken)
         {
-            var flight = await _repoistory.GetAsync(request.id);
+            var flight = await _repository.GetAsync(request.id);
             return flight is null ? null : _mapper.Map<FlightDto>(flight);
         }
     }

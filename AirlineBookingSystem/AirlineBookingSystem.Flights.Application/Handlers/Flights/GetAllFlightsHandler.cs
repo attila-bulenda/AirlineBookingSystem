@@ -7,7 +7,7 @@ using MediatR;
 
 namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
 {
-    public class GetAllFlightsHandler: IRequestHandler<GetAllFlightsQuery, IEnumerable<FlightDetailsDto>>
+    public class GetAllFlightsHandler: IRequestHandler<GetAllFlightsQuery, IEnumerable<FlightDto>>
     {
         private readonly IFlightsRepository _repository;
         private readonly IMapper _mapper;
@@ -17,10 +17,10 @@ namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<FlightDetailsDto>> Handle(GetAllFlightsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<FlightDto>> Handle(GetAllFlightsQuery request, CancellationToken cancellationToken)
         {
             var flights = await _repository.GetAllAsync();
-            return flights is null ? null : _mapper.Map<List<FlightDetailsDto>>(flights);
+            return flights is null ? null : _mapper.Map<List<FlightDto>>(flights);
         }
     }
 }

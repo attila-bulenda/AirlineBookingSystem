@@ -12,7 +12,7 @@ namespace AirlineBookingSystem.Flights.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<T> GetAsync(int? id)
+        public virtual async Task<T> GetAsync(int? id)
         {
             if (id is null)
             {
@@ -20,7 +20,7 @@ namespace AirlineBookingSystem.Flights.Infrastructure.Repositories
             }
             return await _context.Set<T>().FindAsync(id);
         }
-        public async Task<List<T>> GetAllAsync()
+        public virtual async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }

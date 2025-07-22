@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Flights.Application.Handlers.Flights;
+﻿using AirlineBookingSystem.Flights.Application.Handlers.Bookings;
+using AirlineBookingSystem.Flights.Application.Handlers.Flights;
 using System.Reflection;
 
 
@@ -14,6 +15,8 @@ namespace AirlineBookingSystem.Flights.Application.Configurations
                 typeof(GetAllFlightsHandler).Assembly,
                 typeof(GetAllFlightsWithBookingsHandler).Assembly,
                 typeof(GetFlightHandler).Assembly,
+                typeof(GetAllBookingsHandler).Assembly,
+                typeof(GetBookingHandler).Assembly,
             ];
         }
     }

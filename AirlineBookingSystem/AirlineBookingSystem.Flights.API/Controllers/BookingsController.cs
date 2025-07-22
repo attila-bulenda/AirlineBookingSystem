@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AirlineBookingSystem.Flights.Infrastructure.Context;
+﻿using AirlineBookingSystem.Flights.Application.Queries.Bookings;
+using AirlineBookingSystem.Flights.Application.Queries.Flights;
 using AirlineBookingSystem.Flights.Core.Models;
+using AirlineBookingSystem.Flights.Infrastructure.Context;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
@@ -10,31 +13,28 @@ namespace AirlineBookingSystem.Flights.API.Controllers
     public class BookingsController : ControllerBase
     {
         private readonly FlightsDbContext _context;
+        private readonly IMediator? _mediator;
 
-        public BookingsController(FlightsDbContext context)
+        public BookingsController(FlightsDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         // GET: api/Bookings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
-            return await _context.Bookings.ToListAsync();
+            var bookings = await _mediator.Send(new GetAllBookingsQuery());
+            return bookings is null ? NotFound() : Ok(bookings);
         }
 
         // GET: api/Bookings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(int id)
         {
-            var booking = await _context.Bookings.FindAsync(id);
-
-            if (booking == null)
-            {
-                return NotFound();
-            }
-
-            return booking;
+            var booking = await _mediator.Send(new GetBookingQuery(id));
+            return booking is null ? NotFound() : Ok(booking);
         }
 
         // PUT: api/Bookings/5

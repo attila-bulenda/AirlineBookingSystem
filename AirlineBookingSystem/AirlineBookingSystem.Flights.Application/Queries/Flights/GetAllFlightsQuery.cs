@@ -3,5 +3,5 @@ using MediatR;
 
 namespace AirlineBookingSystem.Flights.Application.Queries.Flights
 {
-    public record GetAllFlightsQuery: IRequest<IEnumerable<FlightDetailsDto>>;
+    public record GetAllFlightsQuery: IRequest<IEnumerable<FlightDto>>;
 }
