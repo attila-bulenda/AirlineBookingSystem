@@ -1,0 +1,7 @@
+﻿using AirlineBookingSystem.Flights.Core.Models;
+using MediatR;
+
+namespace AirlineBookingSystem.Flights.Application.Queries.Bookings
+{
+    public record GetBookingQuery(int id): IRequest<Booking>;
+}
