@@ -50,7 +50,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Bookings
+        // POST: api/bookings
         [HttpPost]
         public async Task<ActionResult<Booking>> CreateBooking(BookingCreateDto booking)
         {
@@ -58,7 +58,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
            return CreatedAtAction("GetBooking", new { id = bookingId }, booking);
         }
 
-        // DELETE: api/Bookings/5
+        // DELETE: api/bookings/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
