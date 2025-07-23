@@ -3,11 +3,6 @@ using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
 {

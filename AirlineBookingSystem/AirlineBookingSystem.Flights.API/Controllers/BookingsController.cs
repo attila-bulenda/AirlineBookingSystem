@@ -1,12 +1,9 @@
 ﻿using AirlineBookingSystem.Flights.Application.Commands.Bookings;
-using AirlineBookingSystem.Flights.Application.Commands.Flights;
 using AirlineBookingSystem.Flights.Application.Queries.Bookings;
 using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Core.Models;
-using AirlineBookingSystem.Flights.Infrastructure.Context;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
