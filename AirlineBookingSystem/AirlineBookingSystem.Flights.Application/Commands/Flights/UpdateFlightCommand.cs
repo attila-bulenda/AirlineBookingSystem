@@ -4,5 +4,5 @@ using MediatR;
 
 namespace AirlineBookingSystem.Flights.Application.Commands.Flights
 {
-    public record UpdateFlightCommand(int id, FlightDto flight) : IRequest<UpdateFlightResult>;
+    public record UpdateFlightCommand(int id, FlightDto flight) : IRequest<DatabaseOperationResult>;
 }

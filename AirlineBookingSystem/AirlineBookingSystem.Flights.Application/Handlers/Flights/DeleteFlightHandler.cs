@@ -7,41 +7,39 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
 {
-    internal class UpdateFlightHandler : IRequestHandler<UpdateFlightCommand, DatabaseOperationResult>
+    internal class DeleteFlightHandler : IRequestHandler<DeleteFlightCommand, DatabaseOperationResult>
     {
         private readonly IFlightsRepository _repository;
         private readonly IMapper _mapper;
-        public UpdateFlightHandler(IFlightsRepository repository, IMapper mapper)
+        public DeleteFlightHandler(IFlightsRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-        public async Task<DatabaseOperationResult> Handle(UpdateFlightCommand request, CancellationToken cancellationToken)
+        public async Task<DatabaseOperationResult> Handle(DeleteFlightCommand request, CancellationToken cancellationToken)
         {
-            var flightToUpdate = await _repository.GetAsync(request.id);
-            if (flightToUpdate == null)
+            var flight = await _repository.GetAsync(request.id);
+            if (flight == null)
             {
                 return new DatabaseOperationResult { NotFound = true };
             }
-            _mapper.Map(request.flight, flightToUpdate);
             try
             {
-                await _repository.UpdateAsync(flightToUpdate);
+                await _repository.DeleteAsync(request.id);
                 return new DatabaseOperationResult { Success = true };
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 return new DatabaseOperationResult { ErrorMessage = "Concurrency conflict." };
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
-                return new DatabaseOperationResult { ErrorMessage = "Database error." };
+                return new DatabaseOperationResult { ErrorMessage = "Cannot delete this flight because it has associated bookings." };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new DatabaseOperationResult { ErrorMessage = "Unknown error occurred." };
             }
         }
     }
 }
-

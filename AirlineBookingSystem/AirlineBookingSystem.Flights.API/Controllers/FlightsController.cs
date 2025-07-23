@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Core.Models;
-using MediatR;
 using AirlineBookingSystem.Flights.Application.Queries.Flights;
 using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Application.Commands.Flights;
+using MediatR;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
@@ -13,16 +11,13 @@ namespace AirlineBookingSystem.Flights.API.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        private readonly FlightsDbContext _context;
         private readonly IMediator _mediator;
-
-        public FlightsController(FlightsDbContext context, IMediator mediator)
+        public FlightsController(IMediator mediator)
         {
-            _context = context;
             _mediator = mediator;
         }
 
-        // GET: api/Flights
+        // GET: api/flights
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlights()
         {
@@ -30,7 +25,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return flights is null ? NotFound() : Ok(flights);
         }
 
-        // GET: api/Flights/Detailed
+        // GET: api/flights/detailed
         [HttpGet("detailed")]
         public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlightsDetailed()
         {
@@ -38,7 +33,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return flights is null ? NotFound() : Ok(flights);
         }
 
-        // GET: api/Flights/5
+        // GET: api/flights/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FlightDto>> GetFlight(int id)
         {
@@ -46,10 +41,9 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return flight is null ? NotFound() : Ok(flight);
         }
 
-        // PUT: api/Flights/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/flights/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlight(int id, FlightDto flight)
+        public async Task<IActionResult> UpdateFlight(int id, FlightDto flight)
         {
             var result = await _mediator.Send(new UpdateFlightCommand(id, flight));
             if (result.NotFound)
@@ -63,33 +57,28 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Flights
+        // POST: api/flights
         [HttpPost]
-        public async Task<ActionResult<Flight>> PostFlight(FlightDto flight)
+        public async Task<ActionResult<Flight>> CreateFlight(FlightDto flight)
         {
             var flightId = await _mediator.Send(new CreateFlightCommand(flight));
             return CreatedAtAction("GetFlight", new { id = flightId }, flight);
         }
 
-        // DELETE: api/Flights/5
+        // DELETE: api/flights/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFlight(int id)
         {
-            var flight = await _context.Flights.FindAsync(id);
-            if (flight == null)
+            var result = await _mediator.Send(new DeleteFlightCommand(id));
+            if (result.NotFound)
             {
                 return NotFound();
             }
-
-            _context.Flights.Remove(flight);
-            await _context.SaveChangesAsync();
-
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
             return NoContent();
-        }
-
-        private bool FlightExists(int id)
-        {
-            return _context.Flights.Any(e => e.Id == id);
         }
     }
 }

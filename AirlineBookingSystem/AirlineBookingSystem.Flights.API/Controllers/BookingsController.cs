@@ -21,7 +21,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             _mediator = mediator;
         }
 
-        // GET: api/Bookings
+        // GET: api/bookings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
@@ -29,7 +29,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return bookings is null ? NotFound() : Ok(bookings);
         }
 
-        // GET: api/Bookings/5
+        // GET: api/bookings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(int id)
         {
@@ -37,10 +37,9 @@ namespace AirlineBookingSystem.Flights.API.Controllers
             return booking is null ? NotFound() : Ok(booking);
         }
 
-        // PUT: api/Bookings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/bookings/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBooking(int id, Booking booking)
+        public async Task<IActionResult> UpdateBooking(int id, Booking booking)
         {
             if (id != booking.Id)
             {
@@ -69,9 +68,8 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         }
 
         // POST: api/Bookings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Booking>> PostBooking(Booking booking)
+        public async Task<ActionResult<Booking>> CreateBooking(Booking booking)
         {
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
