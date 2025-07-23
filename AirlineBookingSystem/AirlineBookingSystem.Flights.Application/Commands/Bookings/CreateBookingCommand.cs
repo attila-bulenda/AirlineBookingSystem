@@ -1,7 +1,7 @@
-﻿using AirlineBookingSystem.Flights.Core.Models;
+﻿using AirlineBookingSystem.Flights.Core.DTOs;
 using MediatR;
 
 namespace AirlineBookingSystem.Flights.Application.Commands.Bookings
 {
-    public record CreateBookingCommand(Booking booking) : IRequest;
+    public record CreateBookingCommand(BookingCreateDto booking) : IRequest<int>;
 }
