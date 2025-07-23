@@ -23,13 +23,13 @@ namespace AirlineBookingSystem.Users.Infrastructure.Services
             _userManager = userManager;
             _configuration = configuration;
         }
-        public async Task<UserResponseDto> Register(RegisterUserDto details)
+        public async Task<UserResponseDto> Register(RegisterUserDto details, string role = "User")
         {
             var user = _mapper.Map<SystemUser>(details);
             var result = await _userManager.CreateAsync(user, details.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "User");
+                await _userManager.AddToRoleAsync(user, role);
             }
             return _mapper.Map<UserResponseDto>(user);
         }
@@ -63,7 +63,7 @@ namespace AirlineBookingSystem.Users.Infrastructure.Services
             {
                 new Claim("uid", user.Id),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             }
             .Union(userClaims).Union(roleClaims);
 

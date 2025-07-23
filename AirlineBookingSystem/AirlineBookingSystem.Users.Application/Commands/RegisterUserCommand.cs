@@ -4,5 +4,5 @@ using Microsoft.AspNetCore.Identity;
 
 namespace AirlineBookingSystem.Users.Application.Commands
 {
-    public record RegisterUserCommand(RegisterUserDto user) : IRequest<UserResponseDto>;
+    public record RegisterUserCommand(RegisterUserDto user, string role) : IRequest<UserResponseDto>;
 }

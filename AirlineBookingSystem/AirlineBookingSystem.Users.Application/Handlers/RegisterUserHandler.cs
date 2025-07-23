@@ -14,7 +14,7 @@ namespace AirlineBookingSystem.Users.Application.Handlers
         }
         public async Task<UserResponseDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _authenticationManager.Register(request.user);
+            var user = await _authenticationManager.Register(request.user, request.role);
             return user;
         }
     }

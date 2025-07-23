@@ -10,7 +10,8 @@ namespace AirlineBookingSystem.Users.Application.Configurations
             [
                 Assembly.GetExecutingAssembly(),
                 typeof(RegisterUserHandler).Assembly,
-                typeof(LoginUserHandler).Assembly
+                typeof(LoginUserHandler).Assembly,
+                typeof(GetUserInfoHandler).Assembly
             ];
         }
     }

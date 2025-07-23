@@ -4,9 +4,11 @@ using AirlineBookingSystem.Users.Core.Models;
 using AirlineBookingSystem.Users.Infrastructure.Context;
 using AirlineBookingSystem.Users.Infrastructure.Services;
 using AutoMapper;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,21 @@ builder.Services.AddIdentityCore<SystemUser>()
     .AddDefaultTokenProviders();
 builder.Services.AddDataProtection();
 
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+        };
+    });
+
 // Adding dependency injection
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 
@@ -66,7 +83,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 
