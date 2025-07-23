@@ -3,5 +3,5 @@ using MediatR;
 
 namespace AirlineBookingSystem.Users.Application.Commands
 {
-    public record LoginUserCommand: IRequest<UserResponseDto>;
+    public record LoginUserCommand(LoginDto credentials): IRequest<AuthenticationResponseDto>;
 }

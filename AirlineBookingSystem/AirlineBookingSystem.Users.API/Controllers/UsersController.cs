@@ -34,8 +34,8 @@ namespace AirlineBookingSystem.Users.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginDto credentials)
         {
-            // var result = await _mediator.Send(new LoginUserCommand(credentials));
-            return NoContent();
+            var result = await _mediator.Send(new LoginUserCommand(credentials));
+            return Ok(result);
         }
 
         // GET: api/profile

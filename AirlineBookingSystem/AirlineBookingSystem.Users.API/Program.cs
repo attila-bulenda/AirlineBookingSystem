@@ -35,9 +35,10 @@ builder.Services.AddDbContext<SystemUserDbContext>(options =>
 // Registering Identity services
 builder.Services.AddIdentityCore<SystemUser>()
     .AddRoles<IdentityRole>()
-    //.AddTokenProvider<DataProtectorTokenProvider<SystemUser>>("HotelListingApi")
-    .AddEntityFrameworkStores<SystemUserDbContext>();
-    //.AddDefaultTokenProviders();
+    .AddTokenProvider<DataProtectorTokenProvider<SystemUser>>("AirlineBookingSystem")
+    .AddEntityFrameworkStores<SystemUserDbContext>()
+    .AddDefaultTokenProviders();
+builder.Services.AddDataProtection();
 
 // Adding dependency injection
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
