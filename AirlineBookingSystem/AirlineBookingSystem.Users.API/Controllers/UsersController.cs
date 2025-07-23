@@ -49,11 +49,11 @@ namespace AirlineBookingSystem.Users.API.Controllers
         }
 
         // PUT: api/profile
-        [HttpPut]
+        [HttpPut("profile")]
         public async Task<IActionResult> UpdateMyProfile([FromBody] SystemUserDto user)
         {
             string userId = User.FindFirst("uid")?.Value;
-            // await _mediator.Send(new UpdateUserCommand(userId, user));
+            await _mediator.Send(new UpdateUserCommand(userId, user));
             return NoContent();
         }
 

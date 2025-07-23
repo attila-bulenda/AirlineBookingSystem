@@ -10,6 +10,7 @@ namespace AirlineBookingSystem.Users.Application.Configurations
         {
             CreateMap<SystemUser, RegisterUserDto>().ReverseMap();
             CreateMap<SystemUser, UserResponseDto>().ReverseMap();
+            CreateMap<SystemUser, SystemUserDto>().ReverseMap();
         }
     }
 }
