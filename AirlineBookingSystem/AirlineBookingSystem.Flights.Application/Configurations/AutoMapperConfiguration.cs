@@ -12,7 +12,7 @@ namespace AirlineBookingSystem.Flights.Application.Configurations
            CreateMap<Flight, FlightDetailsDto>().ReverseMap();
            CreateMap<Booking, BookingDto>().ReverseMap();
            CreateMap<Booking, BookingDetailsDto>().ReverseMap();
-            CreateMap<Booking, BookingCreateDto>().ReverseMap();
+           CreateMap<Booking, BookingCreateDto>().ReverseMap();
         }
     }
 }

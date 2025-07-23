@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AirlineBookingSystem.Flights.Core.Models;
 using AirlineBookingSystem.Flights.Application.Queries.Flights;
 using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Application.Commands.Flights;
@@ -59,7 +58,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // POST: api/flights
         [HttpPost]
-        public async Task<ActionResult<Flight>> CreateFlight(FlightDto flight)
+        public async Task<ActionResult<FlightDto>> CreateFlight(FlightDto flight)
         {
             var flightId = await _mediator.Send(new CreateFlightCommand(flight));
             return CreatedAtAction("GetFlight", new { id = flightId }, flight);
