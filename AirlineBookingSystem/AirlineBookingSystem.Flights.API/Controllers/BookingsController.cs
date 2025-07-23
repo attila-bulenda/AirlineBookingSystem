@@ -1,4 +1,5 @@
 ﻿using AirlineBookingSystem.Flights.Application.Commands.Bookings;
+using AirlineBookingSystem.Flights.Application.Commands.Flights;
 using AirlineBookingSystem.Flights.Application.Queries.Bookings;
 using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Core.Models;
@@ -40,31 +41,17 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // PUT: api/bookings/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBooking(int id, Booking booking)
+        public async Task<IActionResult> UpdateBooking(int id, BookingCreateDto booking)
         {
-            if (id != booking.Id)
+            var result = await _mediator.Send(new UpdateBookingCommand(id, booking));
+            if (result.NotFound)
             {
-                return BadRequest();
+                return NotFound();
             }
-
-            _context.Entry(booking).State = EntityState.Modified;
-
-            try
+            if (!result.Success)
             {
-                await _context.SaveChangesAsync();
+                return BadRequest(result.ErrorMessage);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
             return NoContent();
         }
 
