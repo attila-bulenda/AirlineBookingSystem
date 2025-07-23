@@ -10,7 +10,6 @@ namespace AirlineBookingSystem.Flights.Application.Handlers.Bookings
     {
         private readonly IBookingsRepository _repository;
         private readonly IMapper _mapper;
-
         public GetAllBookingsHandler(IBookingsRepository repository, IMapper mapper)
         {
             _repository = repository;

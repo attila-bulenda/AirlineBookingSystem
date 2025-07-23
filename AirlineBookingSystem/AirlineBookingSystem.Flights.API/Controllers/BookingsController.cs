@@ -14,12 +14,10 @@ namespace AirlineBookingSystem.Flights.API.Controllers
     [ApiController]
     public class BookingsController : ControllerBase
     {
-        private readonly FlightsDbContext _context;
         private readonly IMediator? _mediator;
 
-        public BookingsController(FlightsDbContext context, IMediator mediator)
+        public BookingsController(IMediator mediator)
         {
-            _context = context;
             _mediator = mediator;
         }
 
@@ -67,21 +65,16 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {
-            var booking = await _context.Bookings.FindAsync(id);
-            if (booking == null)
+            var result = await _mediator.Send(new DeleteBookingCommand(id));
+            if (result.NotFound)
             {
                 return NotFound();
             }
-
-            _context.Bookings.Remove(booking);
-            await _context.SaveChangesAsync();
-
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
             return NoContent();
-        }
-
-        private bool BookingExists(int id)
-        {
-            return _context.Bookings.Any(e => e.Id == id);
         }
     }
 }
