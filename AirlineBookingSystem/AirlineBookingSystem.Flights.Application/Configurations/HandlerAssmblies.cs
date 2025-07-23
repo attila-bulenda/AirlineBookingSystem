@@ -15,8 +15,9 @@ namespace AirlineBookingSystem.Flights.Application.Configurations
                 typeof(GetAllFlightsHandler).Assembly,
                 typeof(GetAllFlightsWithBookingsHandler).Assembly,
                 typeof(GetFlightHandler).Assembly,
+                typeof(CreateFlightHandler).Assembly,
                 typeof(GetAllBookingsHandler).Assembly,
-                typeof(GetBookingHandler).Assembly,
+                typeof(GetBookingHandler).Assembly
             ];
         }
     }

@@ -49,36 +49,21 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         // PUT: api/Flights/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlight(int id, Flight flight)
+        public async Task<IActionResult> PutFlight(int id, FlightDto flight)
         {
-            if (id != flight.Id)
+            var result = await _mediator.Send(new UpdateFlightCommand(id, flight));
+            if (result.NotFound)
             {
-                return BadRequest();
+               return NotFound();
             }
-
-            _context.Entry(flight).State = EntityState.Modified;
-
-            try
+            if (!result.Success)
             {
-                await _context.SaveChangesAsync();
+               return BadRequest(result.ErrorMessage);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FlightExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
             return NoContent();
         }
 
         // POST: api/Flights
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Flight>> PostFlight(FlightDto flight)
         {
