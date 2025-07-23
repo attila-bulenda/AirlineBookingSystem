@@ -1,5 +1,4 @@
 ﻿using AirlineBookingSystem.Flights.Application.Commands.Flights;
-using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using AirlineBookingSystem.Flights.Core.Models;
 using AutoMapper;

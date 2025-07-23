@@ -1,7 +1,6 @@
 ﻿using AirlineBookingSystem.Flights.Application.Commands.Flights;
 using AirlineBookingSystem.Flights.Application.Exceptions;
 using AirlineBookingSystem.Flights.Core.Interfaces;
-using AirlineBookingSystem.Flights.Core.Models;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

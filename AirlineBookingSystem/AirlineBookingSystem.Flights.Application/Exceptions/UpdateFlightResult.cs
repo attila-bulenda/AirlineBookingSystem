@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AirlineBookingSystem.Flights.Application.Exceptions
+﻿namespace AirlineBookingSystem.Flights.Application.Exceptions
 {
     public class UpdateFlightResult
     {
