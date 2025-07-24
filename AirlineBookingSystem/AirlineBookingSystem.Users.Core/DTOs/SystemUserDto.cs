@@ -1,5 +1,4 @@
-﻿using DataAnnotationsExtensions;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AirlineBookingSystem.Users.Core.DTOs
 {
@@ -10,7 +9,7 @@ namespace AirlineBookingSystem.Users.Core.DTOs
         [Required]
         public string LastName { get; set; }
         [Required]
-        [Email]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string UserName { get; set; }
