@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Invoices.Core", "AirlineBookingSystem.Invoices.Core\AirlineBookingSystem.Invoices.Core.csproj", "{5831E8F4-7051-40C1-ABCB-CAB254E7A16F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Invoices.Infrastructure", "AirlineBookingSystem.Invoices.Infrastructure\AirlineBookingSystem.Invoices.Infrastructure.csproj", "{0E4668B8-4CE9-43CE-A595-75CC93F1BEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Invoices.API", "AirlineBookingSystem.Invoices.API\AirlineBookingSystem.Invoices.API.csproj", "{A5A5F5B6-B576-4FEB-927A-15A70FC7B347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{0E4668B8-4CE9-43CE-A595-75CC93F1BEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E4668B8-4CE9-43CE-A595-75CC93F1BEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E4668B8-4CE9-43CE-A595-75CC93F1BEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A5F5B6-B576-4FEB-927A-15A70FC7B347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A5F5B6-B576-4FEB-927A-15A70FC7B347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A5F5B6-B576-4FEB-927A-15A70FC7B347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A5F5B6-B576-4FEB-927A-15A70FC7B347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +112,7 @@ Global
 		{FA872AC7-A19B-4361-A249-B04EA4F8FBBF} = {30EBD3CD-BF6B-4324-8E98-20307908EBC5}
 		{5831E8F4-7051-40C1-ABCB-CAB254E7A16F} = {30EBD3CD-BF6B-4324-8E98-20307908EBC5}
 		{0E4668B8-4CE9-43CE-A595-75CC93F1BEFB} = {30EBD3CD-BF6B-4324-8E98-20307908EBC5}
+		{A5A5F5B6-B576-4FEB-927A-15A70FC7B347} = {30EBD3CD-BF6B-4324-8E98-20307908EBC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD9C51C5-6505-4FCA-A4CB-9FB037BE56FE}
