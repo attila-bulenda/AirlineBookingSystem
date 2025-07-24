@@ -4,9 +4,6 @@ using AirlineBookingSystem.Users.Core.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AirlineBookingSystem.Users.API.Controllers
 {
@@ -36,7 +33,7 @@ namespace AirlineBookingSystem.Users.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDto credentials)
         {
             var result = await _mediator.Send(new LoginUserCommand(credentials));
-            return Ok(result);
+            return result is null ? NotFound() : Ok(result);
         }
 
         // GET: api/profile
@@ -58,11 +55,11 @@ namespace AirlineBookingSystem.Users.API.Controllers
         }
 
         // DELETE: api/profile
-        [HttpDelete]
+        [HttpDelete("profile")]
         public async Task<IActionResult> DeleteMyProfile()
         {
             string userId = User.FindFirst("uid")?.Value;
-            // await _mediator.Send(new DeleteUserCommand(userId));
+            await _mediator.Send(new DeleteUserCommand(userId));
             return NoContent();
         }
     }

@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Users.Application.Handlers;
+﻿using AirlineBookingSystem.Users.Application.Commands;
+using AirlineBookingSystem.Users.Application.Handlers;
 using System.Reflection;
 
 namespace AirlineBookingSystem.Users.Application.Configurations
@@ -12,7 +13,8 @@ namespace AirlineBookingSystem.Users.Application.Configurations
                 typeof(RegisterUserHandler).Assembly,
                 typeof(LoginUserHandler).Assembly,
                 typeof(GetUserInfoHandler).Assembly,
-                typeof(UpdateUserHandler).Assembly
+                typeof(UpdateUserHandler).Assembly,
+                typeof(DeleteUserCommand).Assembly
             ];
         }
     }
