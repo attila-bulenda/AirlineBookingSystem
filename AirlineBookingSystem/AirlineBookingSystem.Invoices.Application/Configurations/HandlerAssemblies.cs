@@ -11,7 +11,8 @@ namespace AirlineBookingSystem.Invoices.Application.Configurations
             [
                 Assembly.GetExecutingAssembly(),
                 typeof(GetInvoiceHandler).Assembly,
-                typeof(CreateInvoiceHandler).Assembly
+                typeof(CreateInvoiceHandler).Assembly,
+                typeof(DeleteInvoiceHandler).Assembly
             ];
         }
     }
