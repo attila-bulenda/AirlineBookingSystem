@@ -1,10 +1,11 @@
 using AirlineBookingSystem.Users.Application.Configurations;
 using AirlineBookingSystem.Users.Core.Interfaces;
 using AirlineBookingSystem.Users.Core.Models;
-using AirlineBookingSystem.Users.Infrastructure.Context;
 using AirlineBookingSystem.Users.Infrastructure.Configurations;
+using AirlineBookingSystem.Users.Infrastructure.Context;
 using AirlineBookingSystem.Users.Infrastructure.Services;
 using AutoMapper;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -73,6 +74,16 @@ var mapperConfig = new MapperConfiguration(cfg =>
 }, loggerFactory);
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+
+// Adding MassTransit
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+    });
+});
+builder.Services.AddMassTransitHostedService();
 
 var app = builder.Build();
 

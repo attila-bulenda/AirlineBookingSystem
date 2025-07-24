@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "AirlineBookingSystem.Users.API\\AirlineBookingSystem.Users.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AirlineBookingSystem.Notifications.API\\AirlineBookingSystem.Notifications.API.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
