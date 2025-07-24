@@ -1,6 +1,8 @@
+using AirlineBookingSystem.Invoices.Application.Configurations;
 using AirlineBookingSystem.Invoices.Core.Interfaces;
 using AirlineBookingSystem.Invoices.Infrastructure.Context;
 using AirlineBookingSystem.Invoices.Infrastructure.Repositories;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +27,19 @@ builder.Services.AddDbContext<InvoicesDbContext>(options =>
         options.EnableDetailedErrors();
     }
 });
+
+// Adding AutoMapper
+var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<AutoMapperConfiguration>();
+}, loggerFactory);
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
+// Adding MediatR handlers
+var handlers = HandlerAssemblies.GetMediatRHandlers();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(handlers));
 
 // Adding dependency injections
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

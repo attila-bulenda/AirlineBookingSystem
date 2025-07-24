@@ -1,7 +1,11 @@
-﻿using AirlineBookingSystem.Invoices.Core.Models;
+﻿using AirlineBookingSystem.Flights.Core.Models;
+using AirlineBookingSystem.Invoices.Application.Commands;
+using AirlineBookingSystem.Invoices.Application.Queries;
+using AirlineBookingSystem.Invoices.Core.DTOs;
+using AirlineBookingSystem.Invoices.Core.Models;
 using AirlineBookingSystem.Invoices.Infrastructure.Context;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AirlineBookingSystem.Invoices.API.Controllers
 {
@@ -10,27 +14,28 @@ namespace AirlineBookingSystem.Invoices.API.Controllers
     public class InvoicesController : ControllerBase
     {
         private readonly InvoicesDbContext _context;
+        private readonly IMediator _mediator;
 
-        public InvoicesController(InvoicesDbContext context)
+        public InvoicesController(InvoicesDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
-        // GET: api/invoices
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Invoice>>> GetInvoices()
+        // GET: api/invoices/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<Invoice>>> GetInvoice(int id)
         {
-            return await _context.Invoices.ToListAsync();
+            var invoice = await _mediator.Send(new GetInvoiceQuery(id));
+            return invoice is null ? NotFound() : Ok(invoice);
         }
 
         // POST: api/invoices
         [HttpPost]
-        public async Task<ActionResult<Invoice>> CreateInvoice([FromBody] Invoice invoice)
+        public async Task<ActionResult<Invoice>> CreateInvoice([FromBody] InvoiceDto invoice)
         {
-            _context.Invoices.Add(invoice);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetInvoices), new { id = invoice.Id }, invoice);
+            var newInvoice = _mediator.Send(new CreateInvoiceCommand(invoice));
+            return CreatedAtAction(nameof(GetInvoice), new { id = newInvoice.Id }, invoice);
         }
     }
 }
