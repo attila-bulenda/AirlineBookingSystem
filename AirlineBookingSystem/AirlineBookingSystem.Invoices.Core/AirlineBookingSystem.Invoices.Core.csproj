@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AirlineBookingSystem.Flights.Core\AirlineBookingSystem.Flights.Core.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Users.Core\AirlineBookingSystem.Users.Core.csproj" />
   </ItemGroup>

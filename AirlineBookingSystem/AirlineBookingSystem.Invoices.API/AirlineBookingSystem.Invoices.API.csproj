@@ -16,7 +16,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AirlineBookingSystem.Invoices.Application\AirlineBookingSystem.Invoices.Application.csproj" />
+    <ProjectReference Include="..\AirlineBookingSystem.Invoices.Core\AirlineBookingSystem.Invoices.Core.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Invoices.Infrastructure\AirlineBookingSystem.Invoices.Infrastructure.csproj" />
   </ItemGroup>
 
