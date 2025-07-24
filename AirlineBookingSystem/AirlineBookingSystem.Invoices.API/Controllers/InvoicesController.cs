@@ -36,5 +36,13 @@ namespace AirlineBookingSystem.Invoices.API.Controllers
             var newInvoice = _mediator.Send(new CreateInvoiceCommand(invoice));
             return CreatedAtAction(nameof(GetInvoice), new { id = newInvoice.Id }, invoice);
         }
+
+        // DELETE: api/invoices/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteInvoice(int id)
+        {
+            await _mediator.Send(new DeleteInvoiceCommand(id));
+            return NoContent();
+        }
     }
 }
