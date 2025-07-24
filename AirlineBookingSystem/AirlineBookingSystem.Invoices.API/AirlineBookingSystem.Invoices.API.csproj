@@ -35,6 +35,7 @@
     <ProjectReference Include="..\AirlineBookingSystem.Invoices.Application\AirlineBookingSystem.Invoices.Application.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Invoices.Core\AirlineBookingSystem.Invoices.Core.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Invoices.Infrastructure\AirlineBookingSystem.Invoices.Infrastructure.csproj" />
+    <ProjectReference Include="..\EventBus\EventBus.csproj" />
   </ItemGroup>
 
 </Project>

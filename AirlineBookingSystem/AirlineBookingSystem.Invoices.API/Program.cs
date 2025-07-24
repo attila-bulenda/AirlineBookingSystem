@@ -2,8 +2,11 @@ using AirlineBookingSystem.Invoices.Application.Configurations;
 using AirlineBookingSystem.Invoices.Core.Interfaces;
 using AirlineBookingSystem.Invoices.Infrastructure.Context;
 using AirlineBookingSystem.Invoices.Infrastructure.Repositories;
+using AirlineBookingSystem.Invoices.Application.Consumers;
 using AutoMapper;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using EventBus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +39,22 @@ var mapperConfig = new MapperConfiguration(cfg =>
 }, loggerFactory);
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+
+// Add MassTransit
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumer<BookingCreatedConsumer>();
+
+    config.UsingRabbitMq((ct, cfg) =>
+    {
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+
+        cfg.ReceiveEndpoint(EventBusConstants.BookingCreatedQueue, c =>
+        {
+            c.ConfigureConsumer<BookingCreatedConsumer>(ct);
+        });
+    });
+});
 
 // Adding MediatR handlers
 var handlers = HandlerAssemblies.GetMediatRHandlers();
