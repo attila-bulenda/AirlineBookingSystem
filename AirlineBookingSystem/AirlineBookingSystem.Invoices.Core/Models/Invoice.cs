@@ -1,7 +1,4 @@
-﻿using AirlineBookingSystem.Flights.Core.Models;
-using AirlineBookingSystem.Users.Core.Models;
-
-namespace AirlineBookingSystem.Invoices.Core.Models
+﻿namespace AirlineBookingSystem.Invoices.Core.Models
 {
     public class Invoice
     {

@@ -1,5 +1,4 @@
-﻿using AirlineBookingSystem.Flights.Core.Models;
-using AirlineBookingSystem.Invoices.Application.Commands;
+﻿using AirlineBookingSystem.Invoices.Application.Commands;
 using AirlineBookingSystem.Invoices.Application.Queries;
 using AirlineBookingSystem.Invoices.Core.DTOs;
 using AirlineBookingSystem.Invoices.Core.Models;
