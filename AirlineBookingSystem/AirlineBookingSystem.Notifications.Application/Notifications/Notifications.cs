@@ -12,11 +12,6 @@
             Console.WriteLine($"Flight {flight} has been changed. Please contact our customer service for further information.");
         }
 
-        public static void FlightCancellationNotification(string flight)
-        {
-            Console.WriteLine($"Flight {flight} has been cancelled. Please contact our customer service for further information.");
-        }
-
         public static void UserRegistrationNotification(string email)
         {
             Console.WriteLine($"User with {email} has been created. Thank you for joining our customer base.");
