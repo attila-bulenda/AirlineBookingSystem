@@ -1,4 +1,6 @@
+using AirlineBookingSystem.Invoices.Core.Interfaces;
 using AirlineBookingSystem.Invoices.Infrastructure.Context;
+using AirlineBookingSystem.Invoices.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,10 @@ builder.Services.AddDbContext<InvoicesDbContext>(options =>
         options.EnableDetailedErrors();
     }
 });
+
+// Adding dependency injections
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IInvoicesRepository, InvoicesRepository>();
 
 var app = builder.Build();
 
