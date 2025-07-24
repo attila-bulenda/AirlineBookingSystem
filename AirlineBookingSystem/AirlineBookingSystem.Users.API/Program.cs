@@ -2,6 +2,7 @@ using AirlineBookingSystem.Users.Application.Configurations;
 using AirlineBookingSystem.Users.Core.Interfaces;
 using AirlineBookingSystem.Users.Core.Models;
 using AirlineBookingSystem.Users.Infrastructure.Context;
+using AirlineBookingSystem.Users.Infrastructure.Configurations;
 using AirlineBookingSystem.Users.Infrastructure.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -88,5 +89,15 @@ app.UseAuthorization();
 
 
 app.MapControllers();
+
+// User seeding
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<SystemUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    await UserSeedingConfiguration.SeedAsync(userManager, roleManager);
+}
 
 app.Run();
