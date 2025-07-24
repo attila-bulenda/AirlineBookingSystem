@@ -2,8 +2,9 @@ using AirlineBookingSystem.Flights.Application.Configurations;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using MassTransit;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,15 @@ var mapperConfig = new MapperConfiguration(cfg =>
 }, loggerFactory);
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+
+// Adding MassTransit
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+    });
+});
 
 // Adding dependency injections
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

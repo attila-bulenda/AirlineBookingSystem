@@ -1,6 +1,6 @@
 [
   {
-    "Name": "New Profile",
+    "Name": "All APIs",
     "Projects": [
       {
         "Path": "AirlineBookingSystem.Users.API\\AirlineBookingSystem.Users.API.csproj",
@@ -8,6 +8,14 @@
       },
       {
         "Path": "AirlineBookingSystem.Notifications.API\\AirlineBookingSystem.Notifications.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AirlineBookingSystem.Flights.API\\AirlineBookingSystem.Flights.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AirlineBookingSystem.Invoices.API\\AirlineBookingSystem.Invoices.API.csproj",
         "Action": "Start"
       }
     ]

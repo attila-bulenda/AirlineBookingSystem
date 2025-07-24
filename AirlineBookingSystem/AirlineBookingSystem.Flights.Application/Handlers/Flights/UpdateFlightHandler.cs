@@ -2,6 +2,8 @@
 using AirlineBookingSystem.Flights.Application.Exceptions;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using AutoMapper;
+using Contracts.Messages;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +13,12 @@ namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
     {
         private readonly IFlightsRepository _repository;
         private readonly IMapper _mapper;
-        public UpdateFlightHandler(IFlightsRepository repository, IMapper mapper)
+        private readonly IPublishEndpoint _publishEndpoint;
+        public UpdateFlightHandler(IFlightsRepository repository, IMapper mapper, IPublishEndpoint publishEndpoint)
         {
             _repository = repository;
             _mapper = mapper;
+            _publishEndpoint = publishEndpoint;
         }
         public async Task<DatabaseOperationResult> Handle(UpdateFlightCommand request, CancellationToken cancellationToken)
         {
@@ -27,6 +31,7 @@ namespace AirlineBookingSystem.Flights.Application.Handlers.Flights
             try
             {
                 await _repository.UpdateAsync(flightToUpdate);
+                await _publishEndpoint.Publish(new FlightUpdatedEvent(flightToUpdate.FlightCode));
                 return new DatabaseOperationResult { Success = true };
             }
             catch (DbUpdateConcurrencyException ex)

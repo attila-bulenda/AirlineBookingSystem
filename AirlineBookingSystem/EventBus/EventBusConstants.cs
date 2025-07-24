@@ -4,5 +4,6 @@
     {
         public const string UserCreatedQueue = "user-created-queue";
         public const string UserDeletedQueue = "user-deleted-queue";
+        public const string FlightUpdatedQueue = "flight-updated-queue";
     }
 }

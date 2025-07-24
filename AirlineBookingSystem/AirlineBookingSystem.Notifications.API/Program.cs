@@ -15,6 +15,7 @@ builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<UserCreatedEventConsumer>();
     config.AddConsumer<UserDeletedEventConsumer>();
+    config.AddConsumer<FlightUpdatedConsumer>();
 
     config.UsingRabbitMq((ct, cfg) =>
     {
@@ -27,6 +28,10 @@ builder.Services.AddMassTransit(config =>
         cfg.ReceiveEndpoint(EventBusConstants.UserDeletedQueue, c =>
         {
             c.ConfigureConsumer<UserDeletedEventConsumer>(ct);
+        });
+        cfg.ReceiveEndpoint(EventBusConstants.FlightUpdatedQueue, c =>
+        {
+            c.ConfigureConsumer<FlightUpdatedConsumer>(ct);
         });
     });
 });
