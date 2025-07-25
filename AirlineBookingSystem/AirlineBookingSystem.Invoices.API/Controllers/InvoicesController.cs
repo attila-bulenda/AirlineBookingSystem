@@ -4,12 +4,14 @@ using AirlineBookingSystem.Invoices.Core.DTOs;
 using AirlineBookingSystem.Invoices.Core.Models;
 using AirlineBookingSystem.Invoices.Infrastructure.Context;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirlineBookingSystem.Invoices.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class InvoicesController : ControllerBase
     {
         private readonly InvoicesDbContext _context;

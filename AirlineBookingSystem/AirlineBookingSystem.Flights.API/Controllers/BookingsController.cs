@@ -3,12 +3,14 @@ using AirlineBookingSystem.Flights.Application.Queries.Bookings;
 using AirlineBookingSystem.Flights.Core.DTOs;
 using AirlineBookingSystem.Flights.Core.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BookingsController : ControllerBase
     {
         private readonly IMediator? _mediator;
@@ -20,6 +22,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // GET: api/bookings
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
             var bookings = await _mediator.Send(new GetAllBookingsQuery());

@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AirlineBookingSystem.Flights.Application.Commands.Flights;
 using AirlineBookingSystem.Flights.Application.Queries.Flights;
 using AirlineBookingSystem.Flights.Core.DTOs;
-using AirlineBookingSystem.Flights.Application.Commands.Flights;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AirlineBookingSystem.Flights.API.Controllers
 {
@@ -26,6 +27,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // GET: api/flights/detailed
         [HttpGet("detailed")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlightsDetailed()
         {
             var flights = await _mediator.Send(new GetAllFlightsWithBookingsQuery());
@@ -42,6 +44,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // PUT: api/flights/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateFlight(int id, FlightDto flight)
         {
             var result = await _mediator.Send(new UpdateFlightCommand(id, flight));
@@ -58,6 +61,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // POST: api/flights
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<FlightDto>> CreateFlight(FlightDto flight)
         {
             var flightId = await _mediator.Send(new CreateFlightCommand(flight));
@@ -66,6 +70,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // DELETE: api/flights/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteFlight(int id)
         {
             var result = await _mediator.Send(new DeleteFlightCommand(id));
