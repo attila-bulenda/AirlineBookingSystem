@@ -1,13 +1,15 @@
 ﻿using AirlineBookingSystem.Users.Application.Commands;
 using AirlineBookingSystem.Users.Application.Queries;
 using AirlineBookingSystem.Users.Core.DTOs;
-using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace AirlineBookingSystem.Users.API.Controllers
 {
     [Route("api/admin")]
     [ApiController]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -23,12 +25,12 @@ namespace AirlineBookingSystem.Users.API.Controllers
         public async Task<ActionResult<UserResponseDto>> RegisterUser([FromBody] RegisterUserDto user, string role)
         {
             var createdUser = await _mediator.Send(new RegisterUserCommand(user, role));
-            return CreatedAtAction(nameof(GetMyProfile), new { id = createdUser.Id }, createdUser);
+            return CreatedAtAction(nameof(GetProfile), new { id = createdUser.Id }, createdUser);
         }
 
         // GET: api/profile/f3d90f8e-43da-4389-85f4-9dfaeb6c99dc
         [HttpGet("profile/{id}")]
-        public async Task<ActionResult<UserResponseDto>> GetMyProfile(string id)
+        public async Task<ActionResult<UserResponseDto>> GetProfile(string id)
         {
             var user = await _mediator.Send(new GetUserInfoQuery(id));
             return user == null ? NotFound() : Ok(user);
@@ -36,7 +38,7 @@ namespace AirlineBookingSystem.Users.API.Controllers
 
         // PUT: api/profile/f3d90f8e-43da-4389-85f4-9dfaeb6c99dc
         [HttpPut("profile/{id}")]
-        public async Task<IActionResult> UpdateMyProfile([FromBody] SystemUserDto user, string id)
+        public async Task<IActionResult> UpdateProfile([FromBody] SystemUserDto user, string id)
         {
             await _mediator.Send(new UpdateUserCommand(id, user));
             return NoContent();
@@ -44,7 +46,7 @@ namespace AirlineBookingSystem.Users.API.Controllers
 
         // DELETE: api/profile/f3d90f8e-43da-4389-85f4-9dfaeb6c99dc
         [HttpDelete("profile/{id}")]
-        public async Task<IActionResult> DeleteMyProfile(string id)
+        public async Task<IActionResult> DeleteProfile(string id)
         {
             await _mediator.Send(new DeleteUserCommand(id));
             return NoContent();

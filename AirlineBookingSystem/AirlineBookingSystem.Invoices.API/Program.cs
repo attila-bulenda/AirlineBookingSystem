@@ -3,10 +3,13 @@ using AirlineBookingSystem.Invoices.Core.Interfaces;
 using AirlineBookingSystem.Invoices.Infrastructure.Context;
 using AirlineBookingSystem.Invoices.Infrastructure.Repositories;
 using AirlineBookingSystem.Invoices.Application.Consumers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using AutoMapper;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using EventBus;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +67,23 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(handlers))
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IInvoicesRepository, InvoicesRepository>();
 
+// Adding authentication strategy
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+            ValidAudience = builder.Configuration["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
+        };
+    }
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -74,6 +94,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

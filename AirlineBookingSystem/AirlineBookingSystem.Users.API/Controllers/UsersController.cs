@@ -36,8 +36,9 @@ namespace AirlineBookingSystem.Users.API.Controllers
             return result is null ? NotFound() : Ok(result);
         }
 
-        // GET: api/profile
+        // GET: api/users/profile
         [HttpGet("profile")]
+        [Authorize(Roles = "Administrator, User")]
         public async Task<ActionResult<UserResponseDto>> GetMyProfile()
         {
             string userId = User.FindFirst("uid")?.Value;
@@ -45,8 +46,9 @@ namespace AirlineBookingSystem.Users.API.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
-        // PUT: api/profile
+        // PUT: api/users/profile
         [HttpPut("profile")]
+        [Authorize(Roles = "Administrator, User")]
         public async Task<IActionResult> UpdateMyProfile([FromBody] SystemUserDto user)
         {
             string userId = User.FindFirst("uid")?.Value;
@@ -54,8 +56,9 @@ namespace AirlineBookingSystem.Users.API.Controllers
             return NoContent();
         }
 
-        // DELETE: api/profile
+        // DELETE: api/users/profile
         [HttpDelete("profile")]
+        [Authorize(Roles = "Administrator, User")]
         public async Task<IActionResult> DeleteMyProfile()
         {
             string userId = User.FindFirst("uid")?.Value;
