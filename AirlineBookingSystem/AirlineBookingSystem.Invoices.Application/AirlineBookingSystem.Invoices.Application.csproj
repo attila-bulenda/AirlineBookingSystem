@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AirlineBookingSystem.Global.ErrorHandlingService\AirlineBookingSystem.Global.ErrorHandlingService.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Invoices.Core\AirlineBookingSystem.Invoices.Core.csproj" />
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
   </ItemGroup>

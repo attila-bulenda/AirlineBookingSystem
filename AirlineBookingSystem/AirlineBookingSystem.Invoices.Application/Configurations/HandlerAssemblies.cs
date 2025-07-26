@@ -1,4 +1,5 @@
-﻿using AirlineBookingSystem.Invoices.Application.Handlers;
+﻿using AirlineBookingSystem.Global.ErrorHandlingService.Commands;
+using AirlineBookingSystem.Invoices.Application.Handlers;
 using System.Reflection;
 
 namespace AirlineBookingSystem.Invoices.Application.Configurations
@@ -12,7 +13,8 @@ namespace AirlineBookingSystem.Invoices.Application.Configurations
                 Assembly.GetExecutingAssembly(),
                 typeof(GetInvoiceHandler).Assembly,
                 typeof(CreateInvoiceHandler).Assembly,
-                typeof(DeleteInvoiceHandler).Assembly
+                typeof(DeleteInvoiceHandler).Assembly,
+                typeof(ErrorLogCreationCommand).Assembly
             ];
         }
     }

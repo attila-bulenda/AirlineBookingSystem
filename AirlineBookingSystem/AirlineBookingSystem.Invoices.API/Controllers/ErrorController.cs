@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AirlineBookingSystem.Flights.API.Controllers
+namespace AirlineBookingSystem.Invoices.API.Controllers
 {
     [Route("error")]
     [ApiController]
