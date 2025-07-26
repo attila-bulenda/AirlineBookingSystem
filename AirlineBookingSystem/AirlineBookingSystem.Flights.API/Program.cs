@@ -2,12 +2,14 @@ using AirlineBookingSystem.Flights.Application.Configurations;
 using AirlineBookingSystem.Flights.Core.Interfaces;
 using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AirlineBookingSystem.Global.ErrorHandlingService.Configurations;
+using AirlineBookingSystem.Global.ErrorHandlingService.Interfaces;
 using AutoMapper;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using HandlerAssemblies = AirlineBookingSystem.Flights.Application.Configurations.HandlerAssemblies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +56,9 @@ builder.Services.AddMassTransit(x =>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IFlightsRepository, FlightsRepository>();
 builder.Services.AddScoped<IBookingsRepository, BookingsRepository>();
+builder.Services.AddSingleton<IErrorStreamHandlingServiceConfiguration, ErrorStreamHandlingServiceConfiguration>();
+builder.Services.Configure<EventBusSettings>(
+    builder.Configuration.GetSection("EventBusSettings"));
 
 // Adding MediatR handlers
 var handlers = HandlerAssemblies.GetMediatRHandlers();
@@ -83,6 +88,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseExceptionHandler("/error/uncaught-exception");
 
 app.UseHttpsRedirection();
 

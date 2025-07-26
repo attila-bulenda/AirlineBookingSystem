@@ -17,6 +17,11 @@
       {
         "Path": "AirlineBookingSystem.Invoices.API\\AirlineBookingSystem.Invoices.API.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "AirlineBookingSystem.Global.ErrorHandlingService\\AirlineBookingSystem.Global.ErrorHandlingService.csproj",
+        "Action": "Start",
+        "DebugTarget": "AirlineBookingSystem.Global.ErrorHandlingService"
       }
     ]
   }

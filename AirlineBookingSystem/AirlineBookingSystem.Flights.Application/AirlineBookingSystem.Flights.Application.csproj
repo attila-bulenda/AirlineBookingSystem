@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AirlineBookingSystem.Flights.Core\AirlineBookingSystem.Flights.Core.csproj" />
+    <ProjectReference Include="..\AirlineBookingSystem.Global.ErrorHandlingService\AirlineBookingSystem.Global.ErrorHandlingService.csproj" />
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
   </ItemGroup>
 

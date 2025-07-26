@@ -1,5 +1,6 @@
 ﻿using AirlineBookingSystem.Flights.Application.Handlers.Bookings;
 using AirlineBookingSystem.Flights.Application.Handlers.Flights;
+using AirlineBookingSystem.Global.ErrorHandlingService.Handlers;
 using System.Reflection;
 
 
@@ -22,7 +23,8 @@ namespace AirlineBookingSystem.Flights.Application.Configurations
                 typeof(GetBookingHandler).Assembly,
                 typeof(CreateBookingHandler).Assembly,
                 typeof(UpdateBookingHandler).Assembly,
-                typeof(DeleteBookingHandler).Assembly
+                typeof(DeleteBookingHandler).Assembly,
+                typeof(ErrorLogCreationHandler).Assembly
             ];
         }
     }
