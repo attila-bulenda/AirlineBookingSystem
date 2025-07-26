@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global", "Global", "{E488F2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Global.ErrorHandlingService", "AirlineBookingSystem.Global.ErrorHandlingService\AirlineBookingSystem.Global.ErrorHandlingService.csproj", "{E322FE62-2C2C-4904-A0AB-79056280A8B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Global.ErrorHandlingService.Web", "AirlineBookingSystem.Global.ErrorHandlingService.Web\AirlineBookingSystem.Global.ErrorHandlingService.Web.csproj", "{DE58888E-55A3-469A-92A3-9C20340DFAED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{E322FE62-2C2C-4904-A0AB-79056280A8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E322FE62-2C2C-4904-A0AB-79056280A8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E322FE62-2C2C-4904-A0AB-79056280A8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE58888E-55A3-469A-92A3-9C20340DFAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE58888E-55A3-469A-92A3-9C20340DFAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE58888E-55A3-469A-92A3-9C20340DFAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE58888E-55A3-469A-92A3-9C20340DFAED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,6 +157,7 @@ Global
 		{7523ABA6-776F-4B19-A59F-EEFB420B1F86} = {1A9439C1-DE01-498A-B0EA-02A305425E2E}
 		{0738FE37-2545-45EB-8A46-FF82497E1FB1} = {F84F1FCD-69D7-47F0-BCFB-A6DD6B230542}
 		{E322FE62-2C2C-4904-A0AB-79056280A8B8} = {E488F20E-7DA8-4160-9A4B-625B2734EA65}
+		{DE58888E-55A3-469A-92A3-9C20340DFAED} = {E488F20E-7DA8-4160-9A4B-625B2734EA65}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD9C51C5-6505-4FCA-A4CB-9FB037BE56FE}

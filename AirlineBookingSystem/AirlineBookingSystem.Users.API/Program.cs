@@ -1,5 +1,6 @@
 using AirlineBookingSystem.Global.ErrorHandlingService.Configurations;
 using AirlineBookingSystem.Global.ErrorHandlingService.Interfaces;
+using AirlineBookingSystem.Global.ErrorHandlingService.Web.Controllers;
 using AirlineBookingSystem.Users.Application.Configurations;
 using AirlineBookingSystem.Users.Core.Interfaces;
 using AirlineBookingSystem.Users.Core.Models;
@@ -19,7 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(ErrorController).Assembly);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

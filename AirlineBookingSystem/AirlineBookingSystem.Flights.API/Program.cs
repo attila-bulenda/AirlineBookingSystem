@@ -4,6 +4,7 @@ using AirlineBookingSystem.Flights.Infrastructure.Context;
 using AirlineBookingSystem.Flights.Infrastructure.Repositories;
 using AirlineBookingSystem.Global.ErrorHandlingService.Configurations;
 using AirlineBookingSystem.Global.ErrorHandlingService.Interfaces;
+using AirlineBookingSystem.Global.ErrorHandlingService.Web.Controllers;
 using AutoMapper;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,8 @@ using HandlerAssemblies = AirlineBookingSystem.Flights.Application.Configuration
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(ErrorController).Assembly);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

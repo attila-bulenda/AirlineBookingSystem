@@ -1,5 +1,6 @@
 using AirlineBookingSystem.Global.ErrorHandlingService.Configurations;
 using AirlineBookingSystem.Global.ErrorHandlingService.Interfaces;
+using AirlineBookingSystem.Global.ErrorHandlingService.Web.Controllers;
 using AirlineBookingSystem.Invoices.Application.Configurations;
 using AirlineBookingSystem.Invoices.Application.Consumers;
 using AirlineBookingSystem.Invoices.Core.Interfaces;
@@ -8,7 +9,6 @@ using AirlineBookingSystem.Invoices.Infrastructure.Repositories;
 using AutoMapper;
 using EventBus;
 using MassTransit;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -18,7 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(ErrorController).Assembly);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

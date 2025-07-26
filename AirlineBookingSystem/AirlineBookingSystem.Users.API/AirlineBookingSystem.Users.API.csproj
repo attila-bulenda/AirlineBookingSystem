@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AirlineBookingSystem.Global.ErrorHandlingService.Web\AirlineBookingSystem.Global.ErrorHandlingService.Web.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Global.ErrorHandlingService\AirlineBookingSystem.Global.ErrorHandlingService.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Users.Application\AirlineBookingSystem.Users.Application.csproj" />
     <ProjectReference Include="..\AirlineBookingSystem.Users.Core\AirlineBookingSystem.Users.Core.csproj" />
