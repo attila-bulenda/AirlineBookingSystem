@@ -1,4 +1,5 @@
 ﻿using AirlineBookingSystem.Global.ErrorHandlingService.Commands;
+using AirlineBookingSystem.Global.ErrorHandlingService.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
@@ -24,15 +25,20 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         public async Task<IActionResult> HandleError()
         {
             var exception = HttpContext.Features.Get<IExceptionHandlerFeature>()!.Error;
-            var problemDetails = new ProblemDetails
+            var details = new StructuredProblemDetails
             {
                 Title = exception.Message,
-                Detail = exception.StackTrace,
+                DetailLines = exception.StackTrace?
+                    .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList() ?? [],
                 Instance = HttpContext.Request.Path
             };
-            var json = JsonSerializer.Serialize(problemDetails);
+            var json = JsonSerializer.Serialize(details, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
             await _mediator.Send(new ErrorLogCreationCommand(json));
-            return new ObjectResult(problemDetails);
+            return new ObjectResult(details);
         }
     }
 }
