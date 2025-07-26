@@ -1,3 +1,5 @@
+using AirlineBookingSystem.Global.ErrorHandlingService.Configurations;
+using AirlineBookingSystem.Global.ErrorHandlingService.Interfaces;
 using AirlineBookingSystem.Users.Application.Configurations;
 using AirlineBookingSystem.Users.Core.Interfaces;
 using AirlineBookingSystem.Users.Core.Models;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using HandlerAssemblies = AirlineBookingSystem.Users.Application.Configurations.HandlerAssemblies;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,6 +64,9 @@ builder.Services.AddAuthentication("Bearer")
 
 // Adding dependency injection
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+builder.Services.AddSingleton<IErrorStreamHandlingServiceConfiguration, ErrorStreamHandlingServiceConfiguration>();
+builder.Services.Configure<EventBusSettings>(
+    builder.Configuration.GetSection("EventBusSettings"));
 
 // Adding MediatR handlers
 var handlers = HandlerAssemblies.GetMediatRHandlers();
@@ -92,6 +98,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseExceptionHandler("/error/uncaught-exception");
 
 app.UseHttpsRedirection();
 
