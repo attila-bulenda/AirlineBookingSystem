@@ -9,6 +9,7 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public class FlightsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,6 +20,8 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // GET: api/flights
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<FlightDetailsDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlights()
         {
             var flights = await _mediator.Send(new GetAllFlightsQuery());
@@ -28,6 +31,10 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         // GET: api/flights/detailed
         [HttpGet("detailed")]
         [Authorize(Roles = "Administrator")]
+        [ProducesResponseType(typeof(IEnumerable<FlightDetailsDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<IEnumerable<FlightDetailsDto>>> GetFlightsDetailed()
         {
             var flights = await _mediator.Send(new GetAllFlightsWithBookingsQuery());
@@ -36,6 +43,8 @@ namespace AirlineBookingSystem.Flights.API.Controllers
 
         // GET: api/flights/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(FlightDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<FlightDto>> GetFlight(int id)
         {
             var flight = await _mediator.Send(new GetFlightQuery(id));
@@ -45,6 +54,11 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         // PUT: api/flights/5
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> UpdateFlight(int id, FlightDto flight)
         {
             var result = await _mediator.Send(new UpdateFlightCommand(id, flight));
@@ -62,6 +76,10 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         // POST: api/flights
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [ProducesResponseType(typeof(FlightDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<FlightDto>> CreateFlight(FlightDto flight)
         {
             var flightId = await _mediator.Send(new CreateFlightCommand(flight));
@@ -71,6 +89,11 @@ namespace AirlineBookingSystem.Flights.API.Controllers
         // DELETE: api/flights/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Administrator")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> DeleteFlight(int id)
         {
             var result = await _mediator.Send(new DeleteFlightCommand(id));
