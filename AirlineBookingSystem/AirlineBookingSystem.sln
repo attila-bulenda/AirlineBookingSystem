@@ -53,6 +53,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Global
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineBookingSystem.Global.ErrorHandlingService.Web", "AirlineBookingSystem.Global.ErrorHandlingService.Web\AirlineBookingSystem.Global.ErrorHandlingService.Web.csproj", "{DE58888E-55A3-469A-92A3-9C20340DFAED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{3BA25D41-999C-4DBA-AC5D-F2172226D345}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\AirlineBookingSystem.postman_collection.json = ..\..\..\..\Downloads\AirlineBookingSystem.postman_collection.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{B314AC2F-3BB1-4447-A0CA-113632AA4DCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
