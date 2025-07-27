@@ -154,6 +154,7 @@ To run the full system in Visual Studio:
 <img width="2898" height="1356" alt="image" src="https://github.com/user-attachments/assets/c7fb9fca-3113-4578-bdfd-b77e75fd1166" />
 
 All other projects can be set to `None`.
+
 📌 Notes
 
 This project is a portfolio demonstration, not a production-ready system. It showcases advanced patterns and architecture in .NET-based distributed systems with a focus on clean design and messaging between microservices.
