@@ -1,4 +1,4 @@
-✈️ AirlineBookingSystem
+## ✈️ AirlineBookingSystem
 
 A modular, microservice-based airline booking system built as a demo portfolio project using modern .NET technologies and messaging patterns. The system showcases user authentication, CQRS and repository patterns, event-driven messaging, and clean architectural practices.
 🛠 Tech Stack
@@ -17,7 +17,7 @@ A modular, microservice-based airline booking system built as a demo portfolio p
 
     RabbitMQ (message broker - queues and streams)
 
-🔐 User Authentication
+## 🔐 User Authentication
 
 The system uses ASP.NET Core Identity for authentication and authorization:
 
@@ -31,7 +31,7 @@ The system uses ASP.NET Core Identity for authentication and authorization:
 
     Role-based access control is enforced via ASP.NET's built-in authorization mechanisms.
 
-🗃 Database
+## 🗃 Database
 
     SQLite is used for simplicity and easy local testing.
 
@@ -41,7 +41,7 @@ The system uses ASP.NET Core Identity for authentication and authorization:
 
     Database schema and model updates are handled using EF Core migrations.
 
-🧱 Architectural Patterns
+## 🧱 Architectural Patterns
 ✅ CQRS Pattern
 
     Commands and Queries are separated using MediatR.
@@ -58,7 +58,7 @@ The system uses ASP.NET Core Identity for authentication and authorization:
 
     Encourages decoupled, testable, and scalable data layers.
 
-🧩 API Structure & Data Flow
+## 🧩 API Structure & Data Flow
 
 The system separates responsibilities between services with clearly defined APIs and access roles. The main flows are visualized below.
 
@@ -93,7 +93,7 @@ Invoicing API
     
 <img width="1021" height="717" alt="Dataflow diagram" src="https://github.com/user-attachments/assets/e95ddb64-2827-41aa-90b8-e23b6910b6fb" />
 
-📦 Messaging & Microservice Coordination
+## 📦 Messaging & Microservice Coordination
 
 The architecture follows an event-driven approach powered by RabbitMQ, MassTransit, and MediatR to ensure clean microservice communication.
 
@@ -114,7 +114,7 @@ Event Flows:
 
 <img width="1070" height="757" alt="Messaging ecosystem" src="https://github.com/user-attachments/assets/a9be7b48-3d29-4ef7-950f-27a2b3842d99" />
 
-⚙️ Best Practices Followed
+## ⚙️ Best Practices Followed
 
     Separation of Concerns: Commands/Queries encapsulate logic; Controllers are lean
 
@@ -124,7 +124,7 @@ Event Flows:
 
     Event-driven Design: Ensures scalability and decoupling between services
 
-❗ Global Error Handling & Logging
+## ❗ Global Error Handling & Logging
 
 While not every scenario is fully handled (as expected from a demo), the project includes:
 
@@ -135,6 +135,41 @@ While not every scenario is fully handled (as expected from a demo), the project
     Persistent log events are published into a dedicated error stream
 
 This enables tracing and debugging of runtime issues in a centralized way.
+
+## 📬 Postman Collection
+
+A full-featured Postman collection is included in the project for testing and interacting with all APIs in the AirlineBookingSystem — including users, flights, bookings, and invoices.
+▶️ How to Use
+
+    Import the Collection in Postman
+
+        Download the collection file:
+        📥 postman_collection.json
+
+        In Postman:
+        File → Import → Select the .json file
+        Or drag and drop it into the Postman app.
+
+    Authentication Setup
+
+        Use the Login user or Login admin request to retrieve a JWT token.
+
+        Set the token as a Bearer Token in the Authorization tab of each request, or store it as a variable named jwt_token in a Postman environment.
+
+    Environment (Optional)
+    You can configure a Postman environment to simplify reusing the API base URLs and token.
+
+Explore the APIs
+
+The collection includes ready-to-run examples for:
+
+    🧑 Users API (register, login, profile, deletion)
+
+    ✈️ Flights API (view, create, update, delete flights)
+
+    📘 Bookings API (CRUD operations)
+
+    💸 Invoices API (create and retrieve invoices)
 
 ## 🚀 Running the Project
 
@@ -155,6 +190,6 @@ To run the full system in Visual Studio:
 
 All other projects can be set to `None`.
 
-📌 Notes
+## 📌 Notes
 
 This project is a portfolio demonstration, not a production-ready system. It showcases advanced patterns and architecture in .NET-based distributed systems with a focus on clean design and messaging between microservices.
