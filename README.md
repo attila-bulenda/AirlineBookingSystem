@@ -190,6 +190,44 @@ To run the full system in Visual Studio:
 
 All other projects can be set to `None`.
 
+## 📊 Code Metrics Summary
+
+The solution was analyzed using Visual Studio's built-in Code Metrics tool across all projects and layers.
+
+🔧 Key Findings:
+
+    Maintainability Index is high across most modules:
+
+        ✅ Over 80 in critical services like e.g. Users.API
+
+        🟡 Slightly lower (around 60–75) in services like Flights.Core and the error handling components, likely due to higher complexity or coupling
+
+    Cyclomatic Complexity is moderate overall:
+
+        Most projects fall in the 10–30 range
+
+        The Flights.Core module showed the highest complexity (50), as expected for domain-heavy logic
+
+    Depth of Inheritance stays flat across the board:
+
+        Most components have a depth of 1–3, reflecting clean layering and low inheritance chains
+
+    Class Coupling varies:
+
+        Lower (1–4) in core and application layers
+
+        Higher (10–11) in infrastructure-heavy services like Notifications.API and Flights.Infrastructure
+
+    Lines of Code:
+
+        The largest modules are Users.API (~1,200 LOC) and Flights.API (~1,700 LOC), reflecting their broad responsibilities
+
+        Smaller, focused modules like Contracts, Core, and Application layers remain lightweight and modular
+
+🧠 Takeaway
+
+    The codebase demonstrates good modularity, reasonable complexity, and high maintainability across most services. Slightly more complexity in infrastructure-heavy modules is expected.
+
 ## 📌 Notes
 
 This project is a portfolio demonstration, not a production-ready system. It showcases advanced patterns and architecture in .NET-based distributed systems with a focus on clean design and messaging between microservices.
