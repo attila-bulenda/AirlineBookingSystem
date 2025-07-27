@@ -135,6 +135,25 @@ While not every scenario is fully handled (as expected from a demo), the project
     Persistent log events are published into a dedicated error stream
 
 This enables tracing and debugging of runtime issues in a centralized way.
+
+## 🚀 Running the Project
+
+To run the full system in Visual Studio:
+
+1. Open the solution in Visual Studio 2022.
+2. Go to `Configure startup projects` → `Configure startup projects`
+<img width="1230" height="1036" alt="image" src="https://github.com/user-attachments/assets/6f99431d-07a8-4728-b779-7739c2862ed1" />
+3. Select **Multiple startup projects**.
+4. Set the following projects to `Start`:
+
+   - AirlineBookingSystem.Users.API  
+   - AirlineBookingSystem.Notifications.API  
+   - AirlineBookingSystem.Flights.API  
+   - AirlineBookingSystem.Invoices.API  
+   - AirlineBookingSystem.Global.ErrorHandlingService  
+<img width="2898" height="1356" alt="image" src="https://github.com/user-attachments/assets/c7fb9fca-3113-4578-bdfd-b77e75fd1166" />
+
+All other projects can be set to `None`.
 📌 Notes
 
     This project is a portfolio demonstration, not a production-ready system. It showcases advanced patterns and architecture in .NET-based distributed systems with a focus on clean design and messaging between microservices.
