@@ -156,4 +156,4 @@ To run the full system in Visual Studio:
 All other projects can be set to `None`.
 📌 Notes
 
-    This project is a portfolio demonstration, not a production-ready system. It showcases advanced patterns and architecture in .NET-based distributed systems with a focus on clean design and messaging between microservices.
+This project is a portfolio demonstration, not a production-ready system. It showcases advanced patterns and architecture in .NET-based distributed systems with a focus on clean design and messaging between microservices.
